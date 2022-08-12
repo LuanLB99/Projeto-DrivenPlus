@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import styled from "styled-components";
 import { listPlans } from "../Services/Requests";
 
 
+
 export default function Subscriptions(){
-    const user = JSON.parse(localStorage.getItem('date'))
-    console.log(user);
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user.membership);
     const [plans, setPlans] = useState([]);
+    
     
 useEffect(() => {
     listPlans().then((res) =>{console.log(res.data)

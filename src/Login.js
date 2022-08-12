@@ -1,12 +1,15 @@
 import Logo from './Assets/Img/LogoDriven.png';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { postLogin } from './Services/Requests';
 
 
 export default function Login(){  
+    const navigate = useNavigate();
+    const myplan = JSON.parse(localStorage.getItem('member'))
     const [formLogin, setFormLogin] = useState();
+    console.log(myplan);    
 
 function handleForm({name, value}){
 console.log(name,value)
@@ -15,15 +18,22 @@ setFormLogin({...formLogin,
 )
 }
 
+
+
 function sendForm(e){
     e.preventDefault();
     postLogin(formLogin)
-    .then((res) => {console.log(res.data)
+    .then((res) => {console.log(res.data.membership)
         localStorage.setItem('user', JSON.stringify(res.data))
         localStorage.setItem('token', JSON.stringify(res.data.token))
+        if(res.data.membership !== null){
+            navigate('/home')
+        } else {
+            navigate('/subscriptions')
+        }
        
     })
-    .catch(() => console.log('deu errado!!'))
+    .catch(() => alert('Usuário e/ou senha incorretos!'))
 }
 
     return(

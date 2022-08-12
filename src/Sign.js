@@ -7,6 +7,7 @@ import { postSing } from './Services/Requests';
 
 export default function Sign(){  
     const [formSign, setFormSign] = useState();
+    const navigate = useNavigate();
 
 function handleForm({name, value}){
 console.log(name,value)
@@ -20,7 +21,8 @@ function sendForm(e){
     console.log(formSign);
     postSing(formSign)
     .then((res) => {
-        console.log(res)
+        console.log(res);
+        navigate('/')
     })
     .catch((res) => alert(res.data));
 }

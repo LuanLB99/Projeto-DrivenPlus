@@ -2,6 +2,7 @@ import {createGlobalStyle} from 'styled-components';
 import Login from './Login';
 import Sign from './Sign';
 import Plan from './Plan';
+import Home from './Home';
 import Subscriptions from './Subscriptions/Subscriptions';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -29,6 +30,7 @@ export default function App(){
         <Route path='sign-up' element={<Sign />} />
         <Route path='/subscriptions' element={<Subscriptions />} />
         <Route path='subscriptions/:ID_DO_PLANO' element={<Plan />} />
+        <Route path='/home' element={<Home />} />
         </Routes>
         </BrowserRouter>
         </>
