@@ -1,15 +1,18 @@
 import Logo from './Assets/Img/LogoDriven.png';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { postLogin } from './Services/Requests';
+import UserContext from './Context/UserContext';
 
 
 export default function Login(){  
     const navigate = useNavigate();
+    const {setUser} = useContext(UserContext);
     const myplan = JSON.parse(localStorage.getItem('member'))
     const [formLogin, setFormLogin] = useState();
-    console.log(myplan);    
+    console.log(myplan);
+
 
 function handleForm({name, value}){
 console.log(name,value)
@@ -26,6 +29,8 @@ function sendForm(e){
     .then((res) => {console.log(res.data.membership)
         localStorage.setItem('user', JSON.stringify(res.data))
         localStorage.setItem('token', JSON.stringify(res.data.token))
+        setUser(res.data)
+        ;
         if(res.data.membership !== null){
             navigate('/home')
         } else {

@@ -10,7 +10,6 @@ export default function Sign(){
     const navigate = useNavigate();
 
 function handleForm({name, value}){
-console.log(name,value)
 setFormSign({...formSign,
     [name]:value}
 )
@@ -18,7 +17,6 @@ setFormSign({...formSign,
 
 function sendForm(e){
     e.preventDefault();
-    console.log(formSign);
     postSing(formSign)
     .then((res) => {
         console.log(res);

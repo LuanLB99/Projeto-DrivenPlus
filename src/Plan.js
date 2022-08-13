@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import UserContext from "./Context/UserContext";
 import { postPlan } from "./Services/Requests";
+
 export default function Plan(){
-    const [page, setPage] = useState(false);
     const myId = useParams();
     const navigate = useNavigate();
+    const [page, setPage] = useState(false);
+    const {setUser, plans} = useContext(UserContext); 
     const [formLogin, setFormLogin] = useState({
         membershipId:myId.ID_DO_PLANO,
     });
-    const [formPlan, setFormPlan] = useState('');
-    const [formFinalPlan, setFormFinalPlan] = useState('');
    
 function handleForm({name, value}){
 console.log(name,value)
@@ -21,10 +22,9 @@ setFormLogin({...formLogin,
 
 function sendForm(e){
     e.preventDefault();
-    console.log(formLogin)
     postPlan(formLogin)
     .then((res) =>{
-    console.log(res.data)
+    setUser(res.data);
     localStorage.setItem('member', JSON.stringify(res.data))
     navigate('/home');
 })
@@ -35,7 +35,7 @@ function sendForm(e){
         <>
         <Quadro display={page}>
             <Confirm>
-                <h3>Tem certeza que deseja assinar o plano Driven Plus R$ (Valor)?</h3>
+                <h3>Tem certeza que deseja assinar o plano Driven Plus R${plans.price}?</h3>
                 <ConfirmButtons>
                 <No onClick={() => setPage(false)}>Não</No><Yes onClick={sendForm}>Sim</Yes>
                 </ConfirmButtons>

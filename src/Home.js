@@ -1,21 +1,26 @@
 import PefilIm from './Assets/Img/Vector.png';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import UserContext from './Context/UserContext';
+
 
 
 
 export default function Home(){
+    const {user} = useContext(UserContext);
     const navigate = useNavigate()
     const myplan = JSON.parse(localStorage.getItem('user'))
     console.log(myplan);
+    console.log(user);
     return(
         <HomePage>
         <TopPage>
-            <ImagePlan src={myplan.membership.image} alt='logo'/> <PerfilImage src={PefilIm} alt='logo'/>
+            <ImagePlan src={user.membership.image} alt='logo'/> <PerfilImage src={PefilIm} alt='logo'/>
         </TopPage>
             <MainContentPage>
-            <UserName>Olá, {myplan.name}</UserName>
-            {myplan.membership.perks.map((perk) => 
+            <UserName>Olá, {user.name}</UserName>
+            {user.membership.perks.map((perk) => 
             <Button>{perk.title}</Button>
             )}
             </MainContentPage>

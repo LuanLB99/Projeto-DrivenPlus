@@ -5,7 +5,8 @@ import Plan from './Plan';
 import Home from './Home';
 import Subscriptions from './Subscriptions/Subscriptions';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import UserContext from './Context/UserContext';
+import { useState } from 'react';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -21,8 +22,11 @@ const GlobalStyle = createGlobalStyle`
 
 
 export default function App(){
+    const [user, setUser] = useState('');
+    const [plans, setPlans] = useState([]);
     return(
         <>
+        <UserContext.Provider value={{user, setUser, plans, setPlans}}>
         <BrowserRouter>
         <GlobalStyle />
         <Routes>
@@ -33,6 +37,7 @@ export default function App(){
         <Route path='/home' element={<Home />} />
         </Routes>
         </BrowserRouter>
+        </UserContext.Provider>
         </>
     )
 }
