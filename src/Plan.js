@@ -5,6 +5,7 @@ import UserContext from "./Context/UserContext";
 import { postPlan } from "./Services/Requests";
 import Prancheta from './Assets/Img/Prancheta.png';
 import Nota from './Assets/Img/Nota.png';
+import Fechar from './Assets/Img/Fechar.png'
 
 export default function Plan(){
     const myId = useParams();
@@ -36,7 +37,8 @@ function sendForm(e){
 }
     return(
         <>
-    
+        <ConfirmBorder display={page}>
+        <img src={Fechar} alt='Setinha de fechar' onClick={() => setPage(false)} />
         <Quadro display={page}>
             <Confirm>
                 <h3>Tem certeza que deseja assinar o plano Driven Plus R${benefits.state.price}?</h3>
@@ -45,8 +47,8 @@ function sendForm(e){
                 </ConfirmButtons>
             </Confirm>
             </Quadro>
+            </ConfirmBorder>
         
-            <Cortina display={page}></Cortina>
         
         <FormFather>
         <Logo>
@@ -149,12 +151,32 @@ const Quadro = styled.div`
     background: white;
     position: absolute;
     border-radius: 10px;
-    left: 65px;
-    top: 250px;
+    justify-content: center;
+    align-items: center;
     color: black;
     display: ${props => props.display ?'flex':'none'};
     z-index: 10;
 `
+
+const ConfirmBorder = styled.div`
+    width: 100%;
+    height: 660px;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    display: ${props => props.display ?'flex':'none'};
+    z-index: 9;
+
+    img{
+        position:absolute;
+        top: 25px;
+        right: 25px;
+    }
+`
+
 const Confirm = styled.div`
     background: white;
     display: flex;
@@ -199,16 +221,6 @@ const No = styled.button`
     border: 1px solid #CECECE;
     background: #CECECE;
     
-`
-
-const Cortina = styled.div`
-    width:${props => props.display ? "100%": "0px"};
-    height:${props => props.display ? "100%": "0px"};
-    display:${props => props.display ? 'flex': 'none'};
-    position: absolute;
-    z-index: 5;
-    filter: opacity(70%); 
-    background: black;
 `
 const CardName = styled.input`
     height: 40px;
