@@ -1,23 +1,21 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, } from "react-router-dom";
 import styled from "styled-components";
-import UserContext from "../Context/UserContext";
 import { listPlans } from "../Services/Requests";
-
 
 
 export default function Subscriptions(){
     const user = JSON.parse(localStorage.getItem('user'))
     console.log(user.membership);
     const [drivplans, setDrivplans] = useState([]);
-    const { setPlans } = useContext(UserContext);
+    const navigate = useNavigate();
     
     
 useEffect(() => {
     listPlans().then((res) =>{console.log(res.data)
     setDrivplans(res.data);
 } )
-    .catch(()=> console.log('deu errado irmao'))
+    .catch(()=> console.log('deu errado irmão'))
 }, [])
     
 
@@ -31,7 +29,7 @@ useEffect(() => {
         </TopPlan>
 
         {drivplans.map((plan) => 
-        <Link to={`${plan.id}`} onClick={() => setPlans(plan.price)} > <EachPlan >
+        <EachPlan onClick={() => navigate(`${plan.id}`, {state:plan})} >
             <LeftSide>
                 <img src={plan.image} alt='logoDriven'/>
             </LeftSide>
@@ -39,7 +37,7 @@ useEffect(() => {
                 <h3>R${plan.price}</h3>
             </RightSide>
         </EachPlan>
-        </Link>
+        
 )}
         
         </ChoosePLan>

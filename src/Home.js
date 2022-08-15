@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from './Context/UserContext';
+import { deletePlan } from './Services/Requests';
 
 
 
@@ -11,8 +12,12 @@ export default function Home(){
     const {user} = useContext(UserContext);
     const navigate = useNavigate()
     const myplan = JSON.parse(localStorage.getItem('user'))
-    console.log(myplan);
-    console.log(user);
+    function cancelPlan(){
+        deletePlan()
+        .then(navigate('/'))
+        .catch(alert('Tente Novamente!'))
+    }
+    
     return(
         <HomePage>
         <TopPage>
@@ -21,13 +26,13 @@ export default function Home(){
             <MainContentPage>
             <UserName>Olá, {user.name}</UserName>
             {user.membership.perks.map((perk) => 
-            <Button>{perk.title}</Button>
+            <Button><a href={perk.link} target="_blank" >{perk.title}</a></Button>
             )}
             </MainContentPage>
             
             <BottomContentPage>
             <Button onClick={() => navigate('/subscriptions')} >Mudar plano</Button>
-            <ButtonCancel>Cancelar plano</ButtonCancel>
+            <ButtonCancel onClick={cancelPlan}>Cancelar plano</ButtonCancel>
             </BottomContentPage>
         </HomePage>
     )
@@ -76,6 +81,11 @@ const Button = styled.button`
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+
+    a{
+        text-decoration: none;
+        background: #FF4791;
+    }
 `
 
 const ButtonCancel = styled.button`

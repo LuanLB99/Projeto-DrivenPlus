@@ -22,7 +22,7 @@ function sendForm(e){
         console.log(res);
         navigate('/')
     })
-    .catch((res) => alert(res.data));
+    .catch((res) => alert('Tente novamente com outros dados'));
 }
 
     return(

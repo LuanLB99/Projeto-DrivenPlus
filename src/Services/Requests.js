@@ -31,11 +31,23 @@ function listPlans(){
     return promise
 }
 
+function listPlan(idPlan){
+    const config = authenticate();
+    const promise = axios.get(`${BASE_URL}/subscriptions/memberships/${idPlan}`, config)
+    return promise
+}
+
 function postPlan(myplan){
     const config = authenticate();
     const promise = axios.post(`${BASE_URL}/subscriptions`, myplan, config)
     return promise;
 }
 
+function deletePlan(){
+    const config = authenticate();
+    const promise = axios.post(`${BASE_URL}/subscriptions`, config);
+    return promise
+}
 
-export { postSing, postLogin, listPlans, postPlan}
+
+export { listPlan, postSing, postLogin, listPlans, postPlan, deletePlan}
