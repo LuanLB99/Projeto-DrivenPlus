@@ -3,10 +3,14 @@ import Login from './Login';
 import Sign from './Sign';
 import Plan from './Plan';
 import Home from './Home';
+import Change from './Change';
+import ChangeUpdate from './ChangeUpdate';
 import Subscriptions from './Subscriptions/Subscriptions';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UserContext from './Context/UserContext';
 import { useState } from 'react';
+
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -35,6 +39,8 @@ export default function App(){
         <Route path='/subscriptions' element={<Subscriptions />} />
         <Route path='subscriptions/:ID_DO_PLANO' element={<Plan />} />
         <Route path='/home' element={<Home />} />
+        <Route path='/users/:ID_DO_USUARIO' element={<Change />} />
+        <Route path='/users/:ID_DO_PLANO/update' element={<ChangeUpdate />} />
         </Routes>
         </BrowserRouter>
         </UserContext.Provider>

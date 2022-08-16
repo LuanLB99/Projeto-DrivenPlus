@@ -45,9 +45,15 @@ function postPlan(myplan){
 
 function deletePlan(){
     const config = authenticate();
-    const promise = axios.post(`${BASE_URL}/subscriptions`, config);
+    const promise = axios.delete(`${BASE_URL}/subscriptions`, config);
     return promise
 }
 
 
-export { listPlan, postSing, postLogin, listPlans, postPlan, deletePlan}
+function postUpdate(update){
+    const config = authenticate();
+    const promise = axios.put(`${BASE_URL}/users/`, update, config);
+    return promise;
+}
+
+export { listPlan, postSing, postLogin, listPlans, postPlan, deletePlan, postUpdate}

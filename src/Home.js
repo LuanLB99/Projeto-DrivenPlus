@@ -11,17 +11,15 @@ import { deletePlan } from './Services/Requests';
 export default function Home(){
     const {user} = useContext(UserContext);
     const navigate = useNavigate()
-    const myplan = JSON.parse(localStorage.getItem('user'))
     function cancelPlan(){
         deletePlan()
-        .then(navigate('/'))
-        .catch(alert('Tente Novamente!'))
+        .then(navigate('/subscriptions'))
     }
     
     return(
         <HomePage>
         <TopPage>
-            <ImagePlan src={user.membership.image} alt='logo'/> <PerfilImage src={PefilIm} alt='logo'/>
+            <ImagePlan src={user.membership.image} alt='logo'/> <Link to={`/users/${user.id}`} ><PerfilImage src={PefilIm} alt='logo'/></Link>
         </TopPage>
             <MainContentPage>
             <UserName>Olá, {user.name}</UserName>
