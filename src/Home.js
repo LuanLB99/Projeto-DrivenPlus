@@ -19,7 +19,7 @@ export default function Home(){
     return(
         <HomePage>
         <TopPage>
-            <ImagePlan src={user.membership.image} alt='logo'/> <Link to={`/users/${user.id}`} ><PerfilImage src={PefilIm} alt='logo'/></Link>
+            <ImagePlan src={user.membership.image} alt='logo'/> <PerfilImage src={PefilIm} alt='logo'/>
         </TopPage>
             <MainContentPage>
             <UserName>Olá, {user.name}</UserName>

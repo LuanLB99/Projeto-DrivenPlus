@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from 'react';
 import UserContext from './Context/UserContext';
-import Seta from './Assets/Img/Seta.png';
 
 export default function Change(){
     const {user} = useContext(UserContext);
@@ -10,7 +9,7 @@ export default function Change(){
 
     return(
         <>
-       <Link to={'/home'}><img src={Seta} /></Link>
+       <Link to={'/home'}><img src='' /></Link>
 
         <Content>
         <Form>

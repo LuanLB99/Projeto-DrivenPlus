@@ -3,7 +3,6 @@ import { useContext, useState } from 'react';
 import UserContext from './Context/UserContext';
 import styled from "styled-components";
 import { postUpdate } from "./Services/Requests";
-import Seta from './Assets/Img/Seta.png';
 
 export default function ChangeUpdate(){
 
@@ -35,7 +34,7 @@ function sendForm(e){
 
     return(
         <>
-    <Link to={`/users/${user.id}`}><img src={Seta} /></Link>
+    <Link to={`/users/${user.id}`}><img src='' /></Link>
 
          <Content>
         

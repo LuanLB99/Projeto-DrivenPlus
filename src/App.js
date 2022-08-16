@@ -39,8 +39,6 @@ export default function App(){
         <Route path='/subscriptions' element={<Subscriptions />} />
         <Route path='subscriptions/:ID_DO_PLANO' element={<Plan />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/users/:ID_DO_USUARIO' element={<Change />} />
-        <Route path='/users/:ID_DO_PLANO/update' element={<ChangeUpdate />} />
         </Routes>
         </BrowserRouter>
         </UserContext.Provider>

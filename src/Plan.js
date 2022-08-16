@@ -32,7 +32,7 @@ function sendForm(e){
     localStorage.setItem('member', JSON.stringify(res.data))
     navigate('/home');
 })
-    .catch(() => console.log('deu errado poxa'))
+    .catch(() => alert('Preencha os dados corretamente'))
     
 }
     return(
